@@ -125,84 +125,25 @@ const Dashboard = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Document List */}
-          <div className="lg:col-span-1">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center justify-between">
-                  Recent Documents
-                  <Button variant="ghost" size="icon">
-                    <Search className="h-4 w-4" />
-                  </Button>
-                </CardTitle>
-                <CardDescription>
-                  Click on a document to view analysis results
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="p-0">
-                <div className="space-y-0">
-                  {documents.map((doc) => (
-                    <div
-                      key={doc.id}
-                      onClick={() => setSelectedDocument(doc)}
-                      className={`p-4 border-b last:border-b-0 cursor-pointer hover:bg-muted/50 transition-colors ${
-                        selectedDocument?.id === doc.id ? 'bg-primary/5 border-primary/20' : ''
-                      }`}
-                    >
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center space-x-2 mb-1">
-                            <FileText className="h-4 w-4 text-primary" />
-                            <span className="font-medium text-sm truncate">{doc.name}</span>
-                          </div>
-                          <div className="text-xs text-muted-foreground mb-2">
-                            {doc.type} • {doc.size}
-                          </div>
-                          <div className="flex items-center justify-between">
-                            <Badge 
-                              variant={doc.status === 'completed' ? 'default' : 'secondary'}
-                              className="text-xs"
-                            >
-                              {doc.status}
-                            </Badge>
-                            <span className="text-xs text-muted-foreground">
-                              {doc.uploadDate}
-                            </span>
-                          </div>
-                          {doc.status === 'processing' && (
-                            <Progress value={doc.progress} className="mt-2 h-1" />
-                          )}
-                        </div>
-                        <Button variant="ghost" size="icon" className="ml-2">
-                          <MoreVertical className="h-4 w-4" />
-                        </Button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Upload Area */}
-            <Card className="mt-6">
-              <CardContent className="p-6">
-                <div className="border-2 border-dashed border-primary/20 rounded-lg p-8 text-center hover:border-primary/40 transition-colors cursor-pointer">
-                  <Upload className="h-12 w-12 text-primary mx-auto mb-4" />
-                  <h3 className="font-semibold mb-2">Upload New Document</h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Drag & drop or click to select files
-                  </p>
-                  <p className="text-xs text-muted-foreground">
-                    PDF, DOCX, TXT up to 10MB
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+        <div className="grid grid-cols-1 gap-8">
+          {/* Upload Area */}
+          <Card>
+            <CardContent className="p-6">
+              <div className="border-2 border-dashed border-primary/20 rounded-lg p-8 text-center hover:border-primary/40 transition-colors cursor-pointer">
+                <Upload className="h-12 w-12 text-primary mx-auto mb-4" />
+                <h3 className="font-semibold mb-2">Upload New Document</h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Drag & drop or click to select files
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  PDF, DOCX, TXT up to 10MB
+                </p>
+              </div>
+            </CardContent>
+          </Card>
 
           {/* Analysis Results */}
-          <div className="lg:col-span-2">
+          <div>
             <Card>
               <CardHeader>
                 <div className="flex items-center justify-between">
